@@ -1,0 +1,43 @@
+{"advertisements": [
+    {"_id":"651c92bd91b8f58232cda7ff",
+    "name":"Apple watch SE",
+    "type":"sell",
+    "price":100,
+    "image":"apple_watch.jpg",
+    "tags":["lifestyle"]},
+
+    {"_id":"651dd7230a2b3c4776e4e103",
+    "name":"Honda SH",
+    "type":"sell",
+    "price":1250,
+    "image":"honda.jpg",
+    "tags":["motor"]},
+
+    {"_id":"651dd7db0a2b3c4776e4e104",
+    "name":"Bicicleta de ruta",
+    "type":"buy",
+    "price":300,
+    "image":"bici.jpg",
+    "tags":["work"]},
+
+    {"_id":"651dd8680a2b3c4776e4e105",
+    "name":"Iphone 12",
+    "type":"sell",
+    "price":400,
+    "image":"Iphone.jpg",
+    "tags":["mobile", "work"]},
+
+    {"_id":"651dd8eb0a2b3c4776e4e106",
+    "name":"Chaqueta vaquera",
+    "type":"sell",
+    "price":32,
+    "image":"Chaqueta.jpg",
+    "tags":["lifestyle"]},
+
+    {"_id":"651dd9530a2b3c4776e4e107",
+    "name":"Asiento Opel Corsa",
+    "type":"buy",
+    "price":90,
+    "image":"Asiento.jpg",
+    "tags":["motor"]}
+]}

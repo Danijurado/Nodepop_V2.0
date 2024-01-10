@@ -1,0 +1,29 @@
+
+<% include cabecera.ejs %>
+<header class="masthead">
+  <div class="container px-5">
+      <div class="row gx-5 align-items-center">
+          <div class="col-lg-6">
+              <!-- Mashead text and app badges-->
+              <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                <body>
+                  <h1><%= title %></h1>
+                  <p><%= __('welcome to ') %><%= title %></p>
+                  <h2><%= __('Advertisments') %></h2>
+                  <ul>
+                    <% for(var i=0; i<advertisements.length; i++) {%>
+                       <li><%= advertisements[i] %></li>
+                    <% } %>
+                    </ul>
+                </body>
+                  
+              </div>
+          </div>
+          <div class="col-lg-6">
+              
+          </div>
+      </div>
+  </div>
+</header>
+
+<% include footer.ejs %>
