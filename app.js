@@ -3,12 +3,15 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+
+const session = require('express-session');
 const authentication = require("./lib/authentication");
 const swaggerMiddleware = require("./lib/swaggerMiddleware");
 const i18n = require("./lib/i18nConfigure");
 const FeaturesController = require('./controllers/FeaturesController');
 const ChangeLocaleController = require('./controllers/ChangeLocaleController');
 const LoginController = require('./controllers/LoginController');
+const PrivadoController = require('./controllers/PrivadoController');
 
 require("./lib/connectMongoose");
 
@@ -43,7 +46,17 @@ app.use("/api-doc", authentication, swaggerMiddleware);
 const featuresController = new FeaturesController();
 const changeLocaleController = new ChangeLocaleController();
 const loginController = new LoginController();
+const privadoController = new PrivadoController();
 app.use(i18n.init);
+app.use(session({
+  name: 'nodepop-session',
+  secret: 'sakfksdnkjsD',
+  saveUninitialized: true,
+  resave: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 3 //3 dias
+  }
+}));
 app.use("/", require("./routes/index"));
 //app.use("/features", require("./routes/features"));
 app.get('/features', featuresController.index);
@@ -51,6 +64,8 @@ app.get('/features', featuresController.index);
 app.get('/change-locale/:locale', changeLocaleController.changeLocale);
 //app.use('/login', require('./routes/login'));
 app.get('/login', loginController.index);
+app.post('/login', loginController.post);
+app.get('/privado', privadoController.index);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
