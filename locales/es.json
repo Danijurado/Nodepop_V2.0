@@ -4,5 +4,9 @@
 	"Enter a new age of web design": "Entra en una nueva era del diseño web",
 	"Features": "Caracteristicas",
 	"Invalid credentials": "Credenciales incorrectas",
-	"Ad list": "Lista de Anuncios"
+	"Ad list": "Lista de Anuncios",
+	"Email address": "Direccion email",
+	"Password": "Contraseña",
+	"Submit": "Ingresar",
+	"Login": "Acceso"
 }

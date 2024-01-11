@@ -4,5 +4,9 @@
 	"Enter a new age of web design": "Enter a new age of web design",
 	"Features": "Features",
 	"Invalid credentials": "Invalid credentials",
-	"Ad list": "Ad list"
+	"Ad list": "Ad list",
+	"Email address": "Email address",
+	"Password": "Password",
+	"Submit": "Submit",
+	"Login": "Login"
 }
