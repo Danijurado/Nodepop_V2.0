@@ -7,6 +7,7 @@ var logger = require("morgan");
 const session = require('express-session');
 const authentication = require("./lib/authentication");
 const swaggerMiddleware = require("./lib/swaggerMiddleware");
+const sessionAuthMiddleware = require("./lib/sessionAuthMiddleware");
 const i18n = require("./lib/i18nConfigure");
 const FeaturesController = require('./controllers/FeaturesController');
 const ChangeLocaleController = require('./controllers/ChangeLocaleController');
@@ -47,6 +48,7 @@ const featuresController = new FeaturesController();
 const changeLocaleController = new ChangeLocaleController();
 const loginController = new LoginController();
 const privadoController = new PrivadoController();
+
 app.use(i18n.init);
 app.use(session({
   name: 'nodepop-session',
@@ -65,7 +67,7 @@ app.get('/change-locale/:locale', changeLocaleController.changeLocale);
 //app.use('/login', require('./routes/login'));
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
-app.get('/privado', privadoController.index);
+app.get('/privado', sessionAuthMiddleware, privadoController.index);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
