@@ -5,6 +5,9 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const MongoStore = require('connect-mongo');
 const session = require('express-session');
+const multer  = require('multer')
+
+
 const authentication = require("./lib/authentication");
 const swaggerMiddleware = require("./lib/swaggerMiddleware");
 const sessionAuthMiddleware = require("./lib/sessionAuthMiddleware");
@@ -15,6 +18,18 @@ const ChangeLocaleController = require('./controllers/ChangeLocaleController');
 const LoginController = require('./controllers/LoginController');
 const PrivadoController = require('./controllers/PrivadoController');
 const AdvertisementsController = require('./controllers/AdvertisementsController');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/images');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+})
+
+const upload = multer({ storage});
+
 
 require("./lib/connectMongoose");
 
@@ -76,7 +91,7 @@ app.post('/login', loginController.post);
 app.get('/logout', loginController.logout);
 app.get('/privado', sessionAuthMiddleware, privadoController.index);
 app.get('/advertisements-new', sessionAuthMiddleware, advertisementsController.new);
-app.post('/advertisements-new', sessionAuthMiddleware, advertisementsController.postNewAd);
+app.post('/advertisements-new', sessionAuthMiddleware, upload.single('image'), advertisementsController.postNewAd);
 app.get('/advertisements-delete/:advertisementId', sessionAuthMiddleware, advertisementsController.deleteAd)
 
 // catch 404 and forward to error handler

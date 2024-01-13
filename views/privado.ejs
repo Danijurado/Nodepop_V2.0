@@ -37,7 +37,9 @@
                 <th scope="row"><%= advertisement._id %></th>
                 <td><%= advertisement.name %></td>
                 <td><%= advertisement.type %></td>
-                <td><%= advertisement.image %></td>
+                <td>
+                  <img src="/thumbnails/<%= advertisement.image %>" alt="">
+                </td>
                 <td><%= advertisement.tags %></td>
                 <td>
                   <a onclick="confirmDeleteAd('<%= advertisement.name %>', '<%= advertisement._id %>')" href="javascript:void(0)"><i class="bi bi-trash-fill"></i></a>

@@ -8,7 +8,7 @@
     >
       <div class="col-12 col-lg-5">
         <h2 class="display-4 lh-1 mb-4"><%= __('New Ad') %></h2>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <div class="form-floating mb-3">
                 <input type="text" name="name" class="form-control" id="floatingInput" >
                 <label for="floatingInput"><%= __('Name') %></label>
@@ -19,7 +19,7 @@
               </div>
               <div class="form-floating">
                 <input type="file" name="image" class="form-control" id="floatingImage">
-                <label for="floatingPassword"><%= __('Image') %></label>
+                <label for="floatingImage"><%= __('Image') %></label>
               </div>
               <div class="form-floating mb-3">
                 <input type="text" name="tags" class="form-control" id="floatingTags">
