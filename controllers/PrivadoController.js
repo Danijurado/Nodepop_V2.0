@@ -1,3 +1,4 @@
+const Advertisements = require('../models/Advertisements');
 const User = require('../models/User');
 var createError = require("http-errors");
 
@@ -12,7 +13,14 @@ class PrivadoController {
                 next(createError(500, 'usuario not found'))
                 return;
             }
-            res.render('privado', {email: user.email});
+
+            //cargar lista de anuncios
+            const advertisements = await Advertisements.find(res.locals.advertisements)
+
+            res.render('privado', {
+                email: user.email,
+                advertisements
+            });
         } catch (error) {
             next(error)
         }

@@ -3,16 +3,18 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
+const MongoStore = require('connect-mongo');
 const session = require('express-session');
 const authentication = require("./lib/authentication");
 const swaggerMiddleware = require("./lib/swaggerMiddleware");
 const sessionAuthMiddleware = require("./lib/sessionAuthMiddleware");
+const jwtMiddleware = require('./lib/jwtMiddleware');
 const i18n = require("./lib/i18nConfigure");
 const FeaturesController = require('./controllers/FeaturesController');
 const ChangeLocaleController = require('./controllers/ChangeLocaleController');
 const LoginController = require('./controllers/LoginController');
 const PrivadoController = require('./controllers/PrivadoController');
+const AdvertisementsController = require('./controllers/AdvertisementsController');
 
 require("./lib/connectMongoose");
 
@@ -31,23 +33,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+const loginController = new LoginController();
+
 /**
  * rutas del Api
  */
-app.use(
-  "/api/advertisements",
-  authentication,
-  require("./routes/api/advertisements")
-);
-app.use("/api-doc", authentication, swaggerMiddleware);
+app.use("/api/advertisements", jwtMiddleware, require("./routes/api/advertisements"));
+app.post('/api/login', loginController.postJWT);
+app.use("/api-doc", swaggerMiddleware);
 
 /**
  * rutas del website
  */
 const featuresController = new FeaturesController();
 const changeLocaleController = new ChangeLocaleController();
-const loginController = new LoginController();
 const privadoController = new PrivadoController();
+const advertisementsController = new AdvertisementsController();
 
 app.use(i18n.init);
 app.use(session({
@@ -57,8 +58,13 @@ app.use(session({
   resave: false,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 3 //3 dias
-  }
+  },
+  store: MongoStore.create({mongoUrl: process.env.MONGO_URL}) 
 }));
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
 app.use("/", require("./routes/index"));
 //app.use("/features", require("./routes/features"));
 app.get('/features', featuresController.index);
@@ -67,7 +73,11 @@ app.get('/change-locale/:locale', changeLocaleController.changeLocale);
 //app.use('/login', require('./routes/login'));
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
+app.get('/logout', loginController.logout);
 app.get('/privado', sessionAuthMiddleware, privadoController.index);
+app.get('/advertisements-new', sessionAuthMiddleware, advertisementsController.new);
+app.post('/advertisements-new', sessionAuthMiddleware, advertisementsController.postNewAd);
+app.get('/advertisements-delete/:advertisementsId', sessionAuthMiddleware, advertisementsController.deleteAd)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

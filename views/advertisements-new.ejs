@@ -1,0 +1,39 @@
+<% include cabecera.ejs %>
+
+<!-- Basic features section-->
+<section class="bg-light">
+  <div class="container px-5">
+    <div
+      class="row gx-5 align-items-center justify-content-center justify-content-lg-between"
+    >
+      <div class="col-12 col-lg-5">
+        <h2 class="display-4 lh-1 mb-4"><%= __('New Ad') %></h2>
+        <form method="POST">
+            <div class="form-floating mb-3">
+                <input type="text" name="name" class="form-control" id="floatingInput" >
+                <label for="floatingInput"><%= __('Name') %></label>
+              </div>
+              <div class="form-floating">
+                <input type="text" name="type" class="form-control" id="floatingType">
+                <label for="floatingPassword"><%= __('Type') %></label>
+              </div>
+              <div class="form-floating">
+                <input type="file" name="image" class="form-control" id="floatingImage">
+                <label for="floatingPassword"><%= __('Image') %></label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" name="tags" class="form-control" id="floatingTags">
+                <label for="floatingPassword"><%= __('Tags') %></label>
+              </div>
+              <button type="submit" class="btn btn-primary"><%= __('Create') %></button>
+        </form>
+        
+      </div>
+      <div class="col-sm-8 col-md-6">
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<% include footer.ejs %>

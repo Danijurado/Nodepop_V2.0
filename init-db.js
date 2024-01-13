@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const readline = require('readline');
 
 const connection = require('./lib/connectMongoose');
@@ -19,8 +21,8 @@ async function main() {
         process.exit();
     }
 
-    await initAdvertisements();
     await initUser();
+    await initAdvertisements();
 
     connection.close();
 }

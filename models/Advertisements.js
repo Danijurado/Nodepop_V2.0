@@ -6,7 +6,8 @@ const advertisementsSchema = mongoose.Schema({
     type: String,
     price: Number,
     image: String,
-    tags: [String]
+    tags: [String],
+    owner: {ref: 'usuario', type: mongoose.Schema.Types.ObjectId},
 });
 
 advertisementsSchema.statics.lista = function(filtro, skip, limit, sort, fields) {

@@ -1,20 +1,62 @@
 <% include cabecera.ejs %>
 
-<!-- Basic features section-->
-<section class="bg-light">
-  <div class="container px-5">
-    <div
-      class="row gx-5 align-items-center justify-content-center justify-content-lg-between"
-    >
-      <div class="col-12 col-lg-5">
-        <h2 class="display-4 lh-1 mb-4"><%= __('Ad list') %></h2>
-        <p>user: <%= email %></p>
+  <!-- Basic features section-->
+  <section class="bg-light">
+    <div class="container px-5">
+      <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+        <div class="col-12 col-lg-5">
+          <h2 class="display-4 lh-1 mb-4">
+            <%= __('Ad list') %>
+          </h2>
+        </div>
+        <div class="col-12 col-lg-5">
+          <p>
+            <%= __('user:') %>
+              <%= email %>
+          </p>
+
+        </div>
       </div>
-      <div class="col-sm-8 col-md-6">
-       
+      <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+        <div class="col-12 col-lg-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"><%= __('Name') %></th>
+                <th scope="col"><%= __('Type') %></th>
+                <th scope="col"><%= __('Image') %></th>
+                <th scope="col"><%= __('Tags') %></th>
+                <th scope="col"><a href="/advertisements-new"><%= __('New') %></a></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <% advertisements.forEach(advertisement => { %>
+              <tr>
+                <th scope="row"><%= advertisement._id %></th>
+                <td><%= advertisement.name %></td>
+                <td><%= advertisement.type %></td>
+                <td><%= advertisement.image %></td>
+                <td><%= advertisement.tags %></td>
+                <td>
+                  <a onclick="confirmDeleteAd('<%= advertisements.name %>', '<%= advertisements._id %>')" href="javascript:void(0)"><i class="bi bi-trash-fill"></i></a>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<% include footer.ejs %>
+  <script>
+    function confirmDeleteAd(name, advertisementId) {
+      if (confirm(`¿Seguro de eliminar ${name}?`)) {
+        window.location.href= `/advertisements-delete/:${advertisementsId}`;
+      }
+    }
+  </script>
+
+  <% include footer.ejs %>

@@ -8,5 +8,18 @@
 	"Email address": "Direccion email",
 	"Password": "Contraseña",
 	"Submit": "Ingresar",
-	"Login": "Acceso"
+	"Login": "Acceso",
+	"user:": "usuario:",
+	"Private": "Privado",
+	"Logout": "Cerrar sesion",
+	"Name": "Nombre",
+	"Type": "Tipo",
+	"Image": "Imagen",
+	"Tags": "Etiquetas",
+	"Delete": "Borrar",
+	"New": "Nuevo",
+	"new Ad": "nuevo anuncio",
+	"Test page": "Pagina de prueba",
+	"New Ad": "Nuevo anuncio",
+	"Create": "Crear"
 }

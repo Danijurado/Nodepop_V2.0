@@ -8,5 +8,18 @@
 	"Email address": "Email address",
 	"Password": "Password",
 	"Submit": "Submit",
-	"Login": "Login"
+	"Login": "Login",
+	"user:": "user:",
+	"Private": "Private",
+	"Logout": "Logout",
+	"Name": "Name",
+	"Type": "Type",
+	"Image": "Image",
+	"Tags": "Tags",
+	"Delete": "Delete",
+	"New": "New",
+	"new Ad": "new Ad",
+	"Test page": "Test page",
+	"New Ad": "New Ad",
+	"Create": "Create"
 }
