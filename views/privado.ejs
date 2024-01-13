@@ -40,7 +40,7 @@
                 <td><%= advertisement.image %></td>
                 <td><%= advertisement.tags %></td>
                 <td>
-                  <a onclick="confirmDeleteAd('<%= advertisements.name %>', '<%= advertisements._id %>')" href="javascript:void(0)"><i class="bi bi-trash-fill"></i></a>
+                  <a onclick="confirmDeleteAd('<%= advertisement.name %>', '<%= advertisement._id %>')" href="javascript:void(0)"><i class="bi bi-trash-fill"></i></a>
                 </td>
               </tr>
               <% }) %>
@@ -54,7 +54,7 @@
   <script>
     function confirmDeleteAd(name, advertisementId) {
       if (confirm(`¿Seguro de eliminar ${name}?`)) {
-        window.location.href= `/advertisements-delete/:${advertisementsId}`;
+        window.location.href= `/advertisements-delete/${advertisementId}`;
       }
     }
   </script>

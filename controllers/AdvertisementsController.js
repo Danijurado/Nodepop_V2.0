@@ -30,7 +30,7 @@ class AdvertisementsController {
         try {
             //const usuarioId = req.session.usuarioLogado;
             const advertisementId = req.params.advertisementId;
-        
+            console.log(advertisementId)
             
             const advertisement = await Advertisements.findOne({_id: advertisementId});
 

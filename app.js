@@ -77,7 +77,7 @@ app.get('/logout', loginController.logout);
 app.get('/privado', sessionAuthMiddleware, privadoController.index);
 app.get('/advertisements-new', sessionAuthMiddleware, advertisementsController.new);
 app.post('/advertisements-new', sessionAuthMiddleware, advertisementsController.postNewAd);
-app.get('/advertisements-delete/:advertisementsId', sessionAuthMiddleware, advertisementsController.deleteAd)
+app.get('/advertisements-delete/:advertisementId', sessionAuthMiddleware, advertisementsController.deleteAd)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
