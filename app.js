@@ -13,7 +13,7 @@ const swaggerMiddleware = require("./lib/swaggerMiddleware");
 const sessionAuthMiddleware = require("./lib/sessionAuthMiddleware");
 const jwtMiddleware = require('./lib/jwtMiddleware');
 const i18n = require("./lib/i18nConfigure");
-const FeaturesController = require('./controllers/FeaturesController');
+
 const ChangeLocaleController = require('./controllers/ChangeLocaleController');
 const LoginController = require('./controllers/LoginController');
 const PrivadoController = require('./controllers/PrivadoController');
@@ -53,14 +53,14 @@ const loginController = new LoginController();
 /**
  * rutas del Api
  */
-app.use("/api/advertisements", jwtMiddleware, require("./routes/api/advertisements"));
-app.post('/api/login', loginController.postJWT);
 app.use("/api-doc", swaggerMiddleware);
+app.post('/api/login', loginController.postJWT);
+app.use("/api/advertisements", jwtMiddleware, require("./routes/api/advertisements"));
 
 /**
  * rutas del website
  */
-const featuresController = new FeaturesController();
+
 const changeLocaleController = new ChangeLocaleController();
 const privadoController = new PrivadoController();
 const advertisementsController = new AdvertisementsController();
@@ -82,7 +82,7 @@ app.use((req, res, next) => {
 });
 app.use("/", require("./routes/index"));
 //app.use("/features", require("./routes/features"));
-app.get('/features', featuresController.index);
+
 //app.use ('/change-locale', require('./routes/change-locale'));
 app.get('/change-locale/:locale', changeLocaleController.changeLocale);
 //app.use('/login', require('./routes/login'));

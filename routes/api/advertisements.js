@@ -38,6 +38,8 @@ const Advertisements = require('../../models/Advertisements');
  */
 router.get('/', async (req, res, next) => {
     try {
+        
+
        const advertisements = await getAdvertisements(req.query);
 
         res.json({results: advertisements})

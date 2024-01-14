@@ -2,14 +2,15 @@ var createError = require("http-errors");
 const Advertisements = require('../models/Advertisements');
 
 const cote = require('cote');
-const timeService = new cote.Responder({ name: 'Time Service' });
+const resize = new cote.Responder({ name: 'resize' });
 const jimp = require('jimp');
 
-timeService.on('resize', (req) => {
+//TODO: Mover a un servicio y resonmbrar
+resize.on('resize', (req) => {
     const fn = async () => {
         const image = await jimp.read(req.image.path);
         // Resize the image to width 150 and auto height.
-        await image.resize(150, jimp.AUTO);
+        await image.resize(100, jimp.AUTO);
     
         // Save and overwrite the image
         await image.writeAsync(`public/thumbnails/${req.image.originalname}`);
@@ -20,7 +21,6 @@ timeService.on('resize', (req) => {
 
 
 const client = new cote.Requester({ name: 'Client' });
-
 
 class AdvertisementsController {
     new(req, res, next) {
